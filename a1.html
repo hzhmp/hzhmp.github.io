@@ -84,6 +84,20 @@
             font-size: 1.4rem;
             margin-bottom: 20px;
         }
+
+         /* iOS-specific optimizations */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                height: auto;
+                min-height: -webkit-fill-available;
+            }
+            .overlay {
+                min-height: -webkit-fill-available;
+            }
+            .text-list {
+                font-size: 1.25rem; /* Ensures size stays consistent on iOS */
+            }
+        }
     </style>
 </head>
 <body>
