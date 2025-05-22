@@ -98,6 +98,38 @@
                 font-size: 1.25rem; /* Ensures size stays consistent on iOS */
             }
         }
+
+        /* iPadOS Specific Enhancements */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                height: -webkit-fill-available;
+            }
+            
+            .overlay {
+                min-height: -webkit-fill-available;
+                padding: max(20px, env(safe-area-inset-top)) 
+                         max(20px, env(safe-area-inset-right)) 
+                         max(20px, env(safe-area-inset-bottom)) 
+                         max(20px, env(safe-area-inset-left));
+            }
+            
+            /* Better pointer interaction */
+            .nav-links a {
+                cursor: pointer;
+            }
+            
+            /* Optimize list for Apple Pencil */
+            .text-list li {
+                padding: 4px 0;
+            }
+        }
+        
+        /* Safari 15+ Specific Fixes */
+        @supports (font: -apple-system-body) and (-webkit-appearance: none) {
+            .text-list {
+                -webkit-font-smoothing: antialiased;
+            }
+        }
     </style>
 </head>
 <body>
