@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+      <script>
+        // Check if on mobile and redirect with ?mobile=false
+        if (window.innerWidth <= 768) { // Detects mobile screen width
+            const currentUrl = window.location.href;
+            if (!currentUrl.includes("mobile=false")) {
+                const newUrl = currentUrl.includes("?") 
+                    ? currentUrl + "&mobile=false" 
+                    : currentUrl + "?mobile=false";
+                window.location.href = newUrl;
+            }
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
