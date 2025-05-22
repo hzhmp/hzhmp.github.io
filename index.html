@@ -43,16 +43,17 @@
             text-decoration: underline;
         }
         
-        .main-content {
+        .centered-container {
+            width: 60%;
+            margin: 0 auto;
             display: flex;
-            flex-grow: 1;
             gap: 40px;
             align-items: center;
+            flex-grow: 1;
         }
         
         .photo-container {
             flex: 1;
-            max-width: 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -60,7 +61,7 @@
         
         .photo-container img {
             width: 100%;
-            max-height: 500px;
+            max-height: 400px;
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 10px;
@@ -74,7 +75,6 @@
         
         .text-content {
             flex: 1;
-            max-width: 600px;
         }
         
         h1 {
@@ -87,6 +87,13 @@
             line-height: 1.6;
             margin-bottom: 30px;
         }
+
+        @media (max-width: 768px) {
+            .centered-container {
+                width: 90%;
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -98,16 +105,16 @@
             <a href="a3.html">a3</a>
         </div>
         
-        <div class="main-content">
+        <div class="centered-container">
             <div class="photo-container">
-                <img src="dog.jpg" alt="Featured Photo">
+                <img src="https://via.placeholder.com/400x500" alt="Featured Photo">
                 <span class="photo-credit">photo by ...</span>
             </div>
             
             <div class="text-content">
-                <h1>Welcome to My Website.</h1>
-                <p>This tests contents and pictures.</p>
-                <p>Here is the test.</p>
+                <h1>Welcome to My Project</h1>
+                <p>This is a test of pictures and contents.</p>
+                <p>Still testing.</p>
             </div>
         </div>
     </div>
