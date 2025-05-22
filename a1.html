@@ -2,45 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Page a1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page a2</title>
     <style>
-        /* CSS Reset for iOS */
-        html {
-            -webkit-text-size-adjust: 100%;
-            -webkit-tap-highlight-color: transparent;
-            height: 100%;
-        }
-        
         body {
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: Arial, sans-serif;
             color: #ffffff;
             background-image: url("wp22.jpg");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height: 100%;
-            -webkit-overflow-scrolling: touch;
+            height: 100vh;
         }
         
         .overlay {
             background-color: rgba(0, 0, 0, 0.7);
-            min-height: 100vh;
+            height: 100%;
             display: flex;
             flex-direction: column;
             padding: 20px;
-            box-sizing: border-box;
         }
         
         .nav-links {
             display: flex;
             justify-content: flex-end;
-            gap: 15px;
+            gap: 25px;
             margin-bottom: 20px;
-            flex-wrap: wrap;
         }
         
         .nav-links a {
@@ -48,39 +37,29 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 1.25rem;
-            padding: 5px 0;
         }
         
         .nav-links a:hover {
             text-decoration: underline;
         }
         
-        .centered-content {
-            width: 90%;
+        .content {
             max-width: 800px;
-            margin: 0 auto;
+            margin: auto;
             text-align: center;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            box-sizing: border-box;
         }
         
         h1 {
-            font-size: clamp(2.5rem, 4vw, 2.7rem);
+            font-size: 2.7rem;
             margin-bottom: 20px;
-            line-height: 1.3;
         }
-
-        /* iOS-specific optimizations */
-        @supports (-webkit-touch-callout: none) {
-            body {
-                height: -webkit-fill-available;
-            }
-            .overlay {
-                min-height: -webkit-fill-available;
-            }
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
         }
     </style>
 </head>
