@@ -5,6 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>H^0(M,E)</title>
     <style>
+        /* Social Footer Styles */
+.social-footer {
+    margin-top: auto; /* Pushes footer to bottom */
+    padding: 20px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Rest of your existing footer CSS remains the same */
+.logo {
+    height: 32px;
+    width: 32px;
+    transition: transform 0.3s ease;
+    opacity: 0.8;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.deepseek-logo {
+    border-radius: 6px;
+    background: white;
+    padding: 4px;
+}
+        /* main body styles */
         body {
             margin: 0;
             padding: 0;
@@ -32,7 +69,7 @@
                      max(20px, env(safe-area-inset-right)) 
                      max(20px, env(safe-area-inset-bottom)) 
                      max(20px, env(safe-area-inset-left));
-            overflow-y: auto;
+            overflow-y: auto; 
         } 
         
         .nav-links {
@@ -139,6 +176,22 @@
                 <p>Email: hzhuang "at" wustl "dot" edu</p>
             </div>
         </div>
+
+        <!-- Add this just before the closing </div> of .overlay div -->
+<footer class="social-footer">
+    <div class="footer-content">
+        <div class="copyright">© 2023 Your Name/Company | MIT License</div>
+        <div class="social-logos">
+            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark-Light-64px.png" alt="GitHub" class="logo">
+            </a>
+            <a href="https://deepseek.com" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.deepseek.com/favicon.ico" alt="DeepSeek" class="logo deepseek-logo">
+            </a>
+        </div>
+    </div>
+</footer>
+        
     </div>
 </body>
 </html>
