@@ -6,25 +6,24 @@
     <title>S.T.A.R.T!!</title>
     <style>
         /* Social Footer Styles */
-        .social-footer {
-            margin-top: auto; /* Pushes footer to bottom */
-            margin-bottom: 0.4rem;
-            padding: 20px 0;
-            /* border-top: 1px solid rgba(255,255,255,0.1); */
-            width: 100%;
-        }
+.social-footer {
+    margin-top: auto; /* Pushes footer to bottom */
+    margin-bottom: 0.4rem;
+    padding: 20px 0;
+   /* border-top: 1px solid rgba(255,255,255,0.1); */
+    width: 100%;
+}
 
-        .footer-content {
-            display: flex;
-            color: #cccccc;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
+.footer-content {
+    display: flex;
+    color: #cccccc;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
         /* main body styles */
         body {
             margin: 0;
@@ -37,27 +36,16 @@
             background-attachment: fixed;
             height: 100vh;
             overflow: hidden; /* Disable body scrolling */
-        }
-        
-        /* New fixed navigation bar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 15px 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0);
-        }
+}
         
         .overlay {
             background-color: rgba(0, 0, 0, 0);
             position: absolute;
-            top: 60px; /* Adjusted to account for fixed navbar */
+            top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            min-height: calc(100% - 60px);
+            min-height: 100%;
             display: flex;
             flex-direction: column;
             padding: max(20px, env(safe-area-inset-top)) 
@@ -69,7 +57,7 @@
         
         .nav-links {
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             gap: 15px;
             margin-bottom: 20px;
             text-shadow: 2px 2px #000000;
@@ -96,7 +84,6 @@
             justify-content: center;
             box-sizing: border-box;
         }
-        
         @media (min-width: 768px) {
             .content-container {
                 width: 60%;
@@ -124,16 +111,16 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px #000000;
         }
-        
         p {
             font-size: 1.4rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px #000000;
         }
+        
     </style>
 </head>
 <body>
-    <div class="navbar">
+    <div class="overlay">
         <div class="nav-links">
            <a href="index.html">Home</a>
             <a href="a1.html">Research</a>
