@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S.T.A.R.T!!</title>
     <style>
-        
         /* Social Footer Styles */
         .social-footer {
-            margin-top: auto; /* Pushes footer to bottom */
+            margin-top: auto;
             margin-bottom: 0.4rem;
             padding: 20px 0;
             width: 100%;
@@ -25,11 +24,11 @@
             padding: 0 20px;
         }
         
-        /* main body styles */
+        /* Main body styles */
         body {
             margin: 0;
             padding: 0;
-            font-family: "Monaco",monospace;
+            font-family: "Monaco", monospace;
             color: #ffffff;
             background-image: url("bg8.jpg");
             background-size: cover;
@@ -44,19 +43,33 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding: max(20px, env(safe-area-inset-top)) 
-                     max(20px, env(safe-area-inset-right)) 
-                     max(20px, env(safe-area-inset-bottom)) 
-                     max(20px, env(safe-area-inset-left));
-            position: relative; /* Added for positioning context */
+            padding-top: 80px; /* Space for fixed nav */
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
         }
         
+        /* Dynamic Navigation Bar */
         .nav-links {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             display: flex;
             justify-content: flex-end;
             gap: 15px;
-            margin-bottom: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0); /* Start transparent */
+            backdrop-filter: blur(0px); /* No blur initially */
+            z-index: 1000;
             text-shadow: 2px 2px #000000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links.scrolled {
+            background-color: rgba(0, 0, 0, 0.7); /* Opaque when scrolled */
+            backdrop-filter: blur(5px); /* Add blur effect */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
         
         .nav-links a {
@@ -64,10 +77,11 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 1.25rem;
+            transition: opacity 0.3s;
         }
         
         .nav-links a:hover {
-            text-decoration: underline;
+            opacity: 0.8;
         }
         
         .content-container {
@@ -114,50 +128,18 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px #000000;
         }
-        
-        /* Back to Top Button - Now inside overlay */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #555;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            z-index: 999;
-            opacity: 0.9;
-        }
-        
-        .back-to-top:hover {
-            background-color: #333;
-            transform: scale(1.1);
-        }
-        
-        .back-to-top.visible {
-            display: flex;
-        }
     </style>
 </head>
 <body>
-    
-        <div class="nav-links">
-           <a href="index.html">Home</a>
-            <a href="a1.html">Research</a>
-            <a href="a2.html">Events</a>
-            <a href="a3.html">Lounge</a>
-        </div>
-    
-<div class="overlay">
+    <!-- Dynamic Navigation Bar -->
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="a1.html">Research</a>
+        <a href="a2.html">Events</a>
+        <a href="a3.html">Lounge</a>
+    </div>
+
+    <div class="overlay">
         <div class="content-container">
                  <h1>Department routine seminars: </h1>
                     <p>If you would like to attend or give a talk, please feel free to contact our hosts.</p>
@@ -170,7 +152,7 @@
         </div>
 
         <div class="content-container">
-    <h1>Contributed and invited talks: </h1>
+          <h1>Contributed and invited talks: </h1>
             <div class="text-list">
                 <ul>
                     <li><p> <a href = "https://sites.google.com/view/gonefishing2025/home" style="color:#ffffff;">Gone Fishing 2025 at WUSTL</a>: Symplectic semi-characteristics (Spring 2025). </p></li>
@@ -219,31 +201,20 @@
                 <div class="copyright"> © 2025 Hao Zhuang </div>
             </div>
         </footer>
-        
-        <!-- Back to Top Button - Now inside overlay -->
-        <button class="back-to-top" aria-label="Back to top">↑</button>
     </div>
     
     <script>
-        // Enhanced back-to-top button functionality
-        const backToTopButton = document.querySelector('.back-to-top');
+        // Dynamic navigation effect
+        const nav = document.querySelector('.nav-links');
         
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 3) {
-                backToTopButton.classList.add('visible');
+            // Toggle nav background when scrolled
+            if (window.scrollY > 10) {
+                nav.classList.add('scrolled');
             } else {
-                backToTopButton.classList.remove('visible');
+                nav.classList.remove('scrolled');
             }
-        });
-        
-        backToTopButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
         });
     </script>
 </body>
 </html>
-
