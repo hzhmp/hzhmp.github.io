@@ -120,7 +120,7 @@
             text-shadow: 2px 2px #000000;
         }
         
-        /* Back to top button styles */
+        /* Back to top button styles - Always visible version */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -137,16 +137,10 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            text-shadow: 1px 1px #000000;
-        }
-        
-        .back-to-top.visible {
             opacity: 1;
             visibility: visible;
+            z-index: 1000;
+            text-shadow: 1px 1px #000000;
         }
         
         .back-to-top:hover {
@@ -228,20 +222,12 @@
 
 </div>
     
-     <!-- Back to top button -->
+     <!-- Back to top button - Always visible -->
     <a href="#" class="back-to-top" title="Back to Top">↑</a>
     
     <script>
         // Back to top button functionality
         const backToTopButton = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
         
         backToTopButton.addEventListener('click', (e) => {
             e.preventDefault();
