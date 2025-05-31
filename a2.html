@@ -234,7 +234,7 @@
         const backToTopButton = document.querySelector('.back-to-top');
         
         window.addEventListener('scroll', () => {
-            if (overlay.scrollY > 300) {
+            if (window.scrollY > -1) {
                 backToTopButton.classList.add('visible');
             } else {
                 backToTopButton.classList.remove('visible');
@@ -243,7 +243,7 @@
         
         backToTopButton.addEventListener('click', (e) => {
             e.preventDefault();
-            overlay.scrollTo({
+            window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
