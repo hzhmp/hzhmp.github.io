@@ -147,28 +147,19 @@
             </div>
         </footer>
         
-        <!-- Back to Top Button - Now inside overlay -->
-        <button class="back-to-top" aria-label="Back to top">↑</button>
     </div>
     
-    <script>
-        // Enhanced back-to-top button functionality
-        const backToTopButton = document.querySelector('.back-to-top');
+     <script>
+        // Dynamic navigation effect
+        const nav = document.querySelector('.nav-links');
         
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 3) {
-                backToTopButton.classList.add('visible');
+            // Toggle nav background when scrolled
+            if (window.scrollY > 10) {
+                nav.classList.add('scrolled');
             } else {
-                backToTopButton.classList.remove('visible');
+                nav.classList.remove('scrolled');
             }
-        });
-        
-        backToTopButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
         });
     </script>
 </body>
