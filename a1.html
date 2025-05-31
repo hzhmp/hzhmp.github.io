@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>R^{2.718} S^\epsilon K\to H</title>
     <style>
-                /* Social Footer Styles */
-.social-footer {
-    margin-top: auto; /* Pushes footer to bottom */
-    margin-bottom: 0.4rem;
-    padding: 20px 0;
-   /* border-top: 1px solid rgba(255,255,255,0.1); */
-    width: 100%;
-}
+        /* Social Footer Styles */
+        .social-footer {
+            margin-top: auto; /* Pushes footer to bottom */
+            margin-bottom: 0.4rem;
+            padding: 20px 0;
+            width: 100%;
+        }
 
-.footer-content {
-    display: flex;
-    color: #cccccc;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+        .footer-content {
+            display: flex;
+            color: #cccccc;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
         /* main body styles */
         body {
             margin: 0;
@@ -34,25 +34,20 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height: 100vh;
-            overflow: hidden; /* Disable body scrolling */
+            min-height: 100vh;
+            overflow-y: auto;
         }
         
         .overlay {
             background-color: rgba(0, 0, 0, 0);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            min-height: 100%;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             padding: max(20px, env(safe-area-inset-top)) 
                      max(20px, env(safe-area-inset-right)) 
                      max(20px, env(safe-area-inset-bottom)) 
                      max(20px, env(safe-area-inset-left));
-            overflow-y: auto;
+            position: relative; /* Added for positioning context */
         }
         
         .nav-links {
@@ -76,7 +71,7 @@
         
         .content-container {
             width: 90%;
-            max-width: 800px; /* Limits width to 60% on larger screens */
+            max-width: 800px;
             margin: 0 auto;
             flex-grow: 1;
             display: flex;
@@ -84,6 +79,7 @@
             justify-content: center;
             box-sizing: border-box;
         }
+        
         @media (min-width: 768px) {
             .content-container {
                 width: 60%;
@@ -93,7 +89,7 @@
         .text-list {
             text-align: left;
             padding-left: 20px;
-            font-size: 1.4rem; /*font size in the list */
+            font-size: 1.4rem;
         }
         
         .text-list ul {
@@ -111,12 +107,44 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px #000000;
         }
+        
         p {
             font-size: 1.4rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px #000000;
         }
         
+        /* Back to Top Button - Now inside overlay */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 999;
+            opacity: 0.9;
+        }
+        
+        .back-to-top:hover {
+            background-color: #333;
+            transform: scale(1.1);
+        }
+        
+        .back-to-top.visible {
+            display: flex;
+        }
     </style>
 </head>
 <body>
@@ -127,8 +155,8 @@
             <a href="a2.html">Events</a>
             <a href="a3.html">Lounge</a>
         </div>
-
-<div class="content-container">
+        
+        <div class="content-container">
             <h1>Subjects: </h1>
             <p> math.DG, math.KT, math.MP, math.SG (based on <a href = "https://arxiv.org/archive/math" style="color:#ffffff;">categories</a> on arXiv).</p>
             <h1>List of Papers: </h1>
@@ -142,11 +170,37 @@
                 </ul>
             </div>
         </div>
+        <h1> </h1>
+        
         <footer class="social-footer">
-    <div class="footer-content">
-        <div class="copyright"> © 2025 Hao Zhuang </div>
+            <div class="footer-content">
+                <div class="copyright"> © 2025 copyright </div>
+            </div>
+        </footer>
+        
+        <!-- Back to Top Button - Now inside overlay -->
+        <button class="back-to-top" aria-label="Back to top">↑</button>
     </div>
-</footer>
-    </div>
+    
+    <script>
+        // Enhanced back-to-top button functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 3) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>
