@@ -7,7 +7,7 @@
     <style>
         /* Social Footer Styles */
         .social-footer {
-            margin-top: auto; /* Pushes footer to bottom */
+            margin-top: auto;
             margin-bottom: 0.4rem;
             padding: 20px 0;
             width: 100%;
@@ -24,11 +24,11 @@
             padding: 0 20px;
         }
         
-        /* main body styles */
+        /* Main body styles */
         body {
             margin: 0;
             padding: 0;
-            font-family: "Monaco",monospace;
+            font-family: "Monaco", monospace;
             color: #ffffff;
             background-image: url("bg8.jpg");
             background-size: cover;
@@ -49,12 +49,27 @@
             padding-right: max(20px, env(safe-area-inset-right));
         }
         
+        /* Dynamic Navigation Bar */
         .nav-links {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             display: flex;
             justify-content: flex-end;
             gap: 15px;
-            margin-bottom: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0); /* Start transparent */
+            backdrop-filter: blur(0px); /* No blur initially */
+            z-index: 1000;
             text-shadow: 2px 2px #000000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links.scrolled {
+            background-color: rgba(0, 0, 0, 0.7); /* Opaque when scrolled */
+            backdrop-filter: blur(5px); /* Add blur effect */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
         
         .nav-links a {
@@ -62,10 +77,11 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 1.25rem;
+            transition: opacity 0.3s;
         }
         
         .nav-links a:hover {
-            text-decoration: underline;
+            opacity: 0.8;
         }
         
         .content-container {
@@ -112,17 +128,16 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px #000000;
         }
-        
     </style>
 </head>
 <body>
-   <!-- Dynamic Navigation Bar -->
-        <div class="nav-links">
-           <a href="index.html">Home</a>
-            <a href="a1.html">Research</a>
-            <a href="a2.html">Events</a>
-            <a href="a3.html">Lounge</a>
-        </div>
+    <!-- Dynamic Navigation Bar -->
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="a1.html">Research</a>
+        <a href="a2.html">Events</a>
+        <a href="a3.html">Lounge</a>
+    </div>
 
     <div class="overlay">
         <div class="content-container">
@@ -149,7 +164,7 @@
         
     </div>
     
-     <script>
+    <script>
         // Dynamic navigation effect
         const nav = document.querySelector('.nav-links');
         
