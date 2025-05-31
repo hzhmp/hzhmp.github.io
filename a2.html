@@ -120,36 +120,37 @@
             text-shadow: 2px 2px #000000;
         }
         
-        /* Back to Top Button - Now inside overlay */
+        /* Back to top button styles */
         .back-to-top {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background-color: #555;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
             cursor: pointer;
-            display: none;
+            font-size: 1.2rem;
+            display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            opacity: 0;
+            visibility: hidden;
             transition: all 0.3s ease;
-            z-index: 999;
-            opacity: 0.9;
-        }
-        
-        .back-to-top:hover {
-            background-color: #333;
-            transform: scale(1.1);
+            z-index: 1000;
+            text-shadow: 1px 1px #000000;
         }
         
         .back-to-top.visible {
-            display: flex;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: rgba(0, 0, 0, 0.8);
         }
         
     </style>
@@ -225,16 +226,17 @@
     </div>
 </footer>
 
-        <!-- Back to Top Button - Now inside overlay -->
-        <button class="back-to-top" aria-label="Back to top">↑</button>
-    </div>
+</div>
+    
+     <!-- Back to top button -->
+    <a href="#" class="back-to-top" title="Back to Top">↑</a>
     
     <script>
-        // Enhanced back-to-top button functionality
+        // Back to top button functionality
         const backToTopButton = document.querySelector('.back-to-top');
         
         window.addEventListener('scroll', () => {
-            if (window.scrollY > -1) {
+            if (window.pageYOffset > 300) {
                 backToTopButton.classList.add('visible');
             } else {
                 backToTopButton.classList.remove('visible');
