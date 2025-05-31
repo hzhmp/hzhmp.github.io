@@ -200,7 +200,30 @@
     </div>
 </footer>
         
+     <!-- Back to Top Button - Now inside overlay -->
+        <button class="back-to-top" aria-label="Back to top">↑</button>
     </div>
+    
+    <script>
+        // Enhanced back-to-top button functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 3) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>
 
