@@ -113,48 +113,18 @@
             text-shadow: 2px 2px #000000;
         }
         
-        /* Back to Top Button - Now inside overlay */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #555;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            z-index: 999;
-            opacity: 0.9;
-        }
-        
-        .back-to-top:hover {
-            background-color: #333;
-            transform: scale(1.1);
-        }
-        
-        .back-to-top.visible {
-            display: flex;
-        }
     </style>
 </head>
 <body>
-    <div class="overlay">
+    <!-- navigation bar -->
         <div class="nav-links">
            <a href="index.html">Home</a>
             <a href="a1.html">Research</a>
             <a href="a2.html">Events</a>
             <a href="a3.html">Lounge</a>
         </div>
-        
+
+    <div class="overlay">
         <div class="content-container">
             <h1>Subjects: </h1>
             <p> math.DG, math.KT, math.MP, math.SG (based on <a href = "https://arxiv.org/archive/math" style="color:#ffffff;">categories</a> on arXiv).</p>
