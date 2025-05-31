@@ -37,7 +37,6 @@
             background-attachment: fixed;
             height: 100vh;
             overflow: hidden; /* Disable body scrolling */
-            overflow-y:auto;
         }
         
         .overlay {
@@ -120,38 +119,6 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px #000000;
         }
-
-        /* Back to Top Button - Now inside overlay */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #555;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            z-index: 999;
-            opacity: 0.9;
-        }
-        
-        .back-to-top:hover {
-            background-color: #333;
-            transform: scale(1.1);
-        }
-        
-        .back-to-top.visible {
-            display: flex;
-        }
         
     </style>
 </head>
@@ -226,31 +193,6 @@
     </div>
 </footer>
     </div>
-
-<!-- Back to Top Button - Now inside overlay -->
-        <button class="back-to-top" aria-label="Back to top">↑</button>
-    </div>
-    
-    <script>
-        // Enhanced back-to-top button functionality
-        const backToTopButton = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
 
 </body>
 </html>
