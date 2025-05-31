@@ -35,26 +35,21 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height: 100vh;
-            overflow: hidden; /* Disable body scrolling */
+            min-height: 100vh;
+            overflow-y: auto;
         }
-
+        
         .overlay {
             background-color: rgba(0, 0, 0, 0);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            min-height: 100%;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             padding: max(20px, env(safe-area-inset-top)) 
                      max(20px, env(safe-area-inset-right)) 
                      max(20px, env(safe-area-inset-bottom)) 
                      max(20px, env(safe-area-inset-left));
-            overflow-y: auto; 
-        } 
+            position: relative; /* Added for positioning context */
+        }
         
         .nav-links {
             display: flex;
