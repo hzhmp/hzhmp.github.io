@@ -43,11 +43,10 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding: max(20px, env(safe-area-inset-top)) 
-                     max(20px, env(safe-area-inset-right)) 
-                     max(20px, env(safe-area-inset-bottom)) 
-                     max(20px, env(safe-area-inset-left));
-            position: relative; /* Added for positioning context */
+            padding-top: 80px; /* Space for fixed nav */
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
         }
         
         .nav-links {
