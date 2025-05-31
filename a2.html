@@ -120,39 +120,6 @@
             text-shadow: 2px 2px #000000;
         }
         
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 60px;
-            height: 60px;
-            background-color: #555;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: auto;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        .back-to-top.visible {
-            opacity: 0.9;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            background-color: #333;
-            transform: scale(1.1);
-        }
-        
     </style>
 </head>
 <body>
@@ -227,29 +194,6 @@
 </footer>
     </div>
 
- <button class="back-to-top" aria-label="Back to top">↑</button>
-    
-    <script>
-        const backToTopButton = document.querySelector('.back-to-top');
-        
-        // Show/hide button based on scroll position
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        // Smooth scroll to top
-        backToTopButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
 </body>
 </html>
 
