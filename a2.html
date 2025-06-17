@@ -2,58 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Critical viewport settings for iOS -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <!-- Viewport settings optimized for iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>S.T.A.R.T!!</title>
     <style>
-        /* ===== BASE RESET ===== */
+        /* Reset default margins and padding */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
-            overflow-x: hidden;
-        }
-
-        /* ===== PERFECT FULLSCREEN BACKGROUND SOLUTION ===== */
-        .fullscreen-bg {
+        /* Fixed background container that covers entire viewport */
+        .bg-container {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensures it stays behind content */
             background-image: url("bg8.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            -webkit-backface-visibility: hidden;
+            background-attachment: scroll; /* Disables parallax on mobile */
+            -webkit-backface-visibility: hidden; /* Prevents rendering artifacts */
         }
 
-        /* ===== CONTENT WRAPPER WITH SAFE AREAS ===== */
-        .content-wrapper {
+        /* Main page container with safe area insets */
+        .safe-area {
             position: relative;
-            min-height: 100%;
+            min-height: 100vh;
+            min-height: -webkit-fill-available; /* iOS specific height fix */
             display: flex;
             flex-direction: column;
-            padding-top: env(safe-area-inset-top);
-            padding-bottom: env(safe-area-inset-bottom);
         }
 
-        /* ===== BODY STYLES ===== */
+        /* Body styles */
         body {
             font-family: "Monaco", monospace;
             color: #ffffff;
-            background-color: #000; /* Fallback */
+            overflow-x: hidden;
+            background-color: #000; /* Fallback if image fails to load */
         }
 
-        /* ===== NAVIGATION BAR ===== */
+        /* Content overlay with padding for safe areas */
+        .overlay {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px; /* Space for fixed navigation */
+            padding-bottom: max(20px, env(safe-area-inset-bottom)); /* iOS bottom safe area */
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
+        }
+
+        /* Fixed navigation bar */
         .nav-links {
             position: fixed;
-            top: env(safe-area-inset-top);
+            top: 0;
             left: 0;
             right: 0;
             display: flex;
@@ -67,12 +74,14 @@
             transition: all 0.3s ease;
         }
 
+        /* Scrolled state for navigation */
         .nav-links.scrolled {
             background-color: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
+        /* Navigation link styles */
         .nav-links a {
             color: white;
             text-decoration: none;
@@ -81,20 +90,7 @@
             transition: opacity 0.3s;
         }
 
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        /* ===== MAIN CONTENT AREA ===== */
-        .overlay {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            padding-top: 80px; /* Space for nav */
-            padding-left: max(20px, env(safe-area-inset-left));
-            padding-right: max(20px, env(safe-area-inset-right));
-        }
-
+        /* Main content container */
         .content-container {
             width: 90%;
             max-width: 800px;
@@ -105,25 +101,14 @@
             justify-content: center;
         }
 
+        /* Desktop layout adjustment */
         @media (min-width: 768px) {
             .content-container {
                 width: 60%;
             }
         }
 
-        /* ===== TYPOGRAPHY STYLES ===== */
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px #000000;
-        }
-
-        p {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px #000000;
-        }
-
+        /* Text content styles */
         .text-list {
             text-align: left;
             padding-left: 20px;
@@ -140,7 +125,21 @@
             line-height: 1.6;
         }
 
-        /* ===== FOOTER STYLES ===== */
+        /* Heading styles */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #000000;
+        }
+
+        /* Paragraph styles */
+        p {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #000000;
+        }
+
+        /* Footer styles */
         .social-footer {
             margin-top: auto;
             margin-bottom: 0.4rem;
@@ -158,33 +157,23 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        /* ===== LINK STYLES ===== */
-        a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
-    <!-- Background covers entire screen including safe areas -->
-    <div class="fullscreen-bg"></div>
+    <!-- Fixed background container -->
+    <div class="bg-container"></div>
     
-    <!-- Main content wrapper -->
-    <div class="content-wrapper">
-        <!-- Navigation -->
+    <!-- Safe area wrapper for iOS -->
+    <div class="safe-area">
+        <!-- Navigation bar -->
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="a1.html">Research</a>
-            <a href="a2.html">Events</a>
+            <a href="a2.html">Event</a>
             <a href="a3.html">Lounge</a>
         </div>
 
-        <!-- Content area -->
+        <!-- Main content area -->
         <div class="overlay">
             <div class="content-container">
                  <h1>Department routine seminars: </h1>
@@ -249,42 +238,42 @@
             </footer>
         </div>
     </div>
-
+    
     <script>
-        // ===== BACKGROUND IMAGE HANDLER =====
-        function initBackground() {
-            const bg = document.querySelector('.fullscreen-bg');
-            const img = new Image();
+        // Verify background image loads successfully
+        function verifyBackground() {
+            const bgDiv = document.querySelector('.bg-container');
+            const testImg = new Image();
             
-            img.onload = function() {
-                bg.style.backgroundImage = `url("${img.src}")`;
+            testImg.onload = function() {
+                bgDiv.style.backgroundImage = `url("${testImg.src}")`;
             };
             
-            img.onerror = function() {
-                console.warn("Background image failed to load");
-                bg.style.backgroundColor = "#222";
-                bg.style.backgroundImage = "none";
+            testImg.onerror = function() {
+                console.error("Background image failed to load");
+                bgDiv.style.backgroundColor = "#222";
             };
             
-            img.src = "bg8.jpg";
+            testImg.src = "bg8.jpg";
         }
 
-        // ===== VIEWPORT HEIGHT MANAGER =====
-        function manageViewport() {
-            const vh = window.innerHeight;
-            const doc = document.documentElement;
+        // Adjust layout for iOS viewport quirks
+        function adjustLayout() {
+            const visualHeight = window.innerHeight;
+            const safeArea = document.querySelector('.safe-area');
             
-            // Set CSS variable
-            doc.style.setProperty('--vh', `${vh}px`);
+            // Set CSS custom property and direct height
+            document.documentElement.style.setProperty('--vh', `${visualHeight}px`);
+            safeArea.style.minHeight = `${visualHeight}px`;
             
-            // Disable elastic scrolling on iOS
+            // Prevent elastic scrolling on iOS
             document.body.style.overscrollBehaviorY = 'none';
         }
 
-        // ===== INITIALIZATION =====
+        // Initialize on DOM load
         document.addEventListener('DOMContentLoaded', function() {
-            initBackground();
-            manageViewport();
+            verifyBackground();
+            adjustLayout();
             
             // Navigation scroll effect
             const nav = document.querySelector('.nav-links');
@@ -293,11 +282,11 @@
             });
         });
 
-        // ===== VIEWPORT CHANGE HANDLERS =====
-        window.addEventListener('resize', manageViewport);
+        // Handle viewport changes
+        window.addEventListener('resize', adjustLayout);
         window.addEventListener('orientationchange', function() {
-            // Delay to account for iOS rotation animation
-            setTimeout(manageViewport, 300);
+            // Delay adjustment to account for iOS rotation animation
+            setTimeout(adjustLayout, 300);
         });
     </script>
 </body>
