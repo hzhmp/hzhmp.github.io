@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport settings optimized for iOS -->
+    <!-- Viewport settings optimized for iOS with cover to extend beyond safe areas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>S.T.A.R.T!!</title>
     <style>
@@ -13,20 +13,27 @@
             box-sizing: border-box;
         }
 
-        /* Fixed background container that covers entire viewport */
+        /* Fixed background container that covers entire viewport including safe areas */
         .bg-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Ensures it stays behind content */
+            z-index: -1;
             background-image: url("bg8.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: scroll; /* Disables parallax on mobile */
-            -webkit-backface-visibility: hidden; /* Prevents rendering artifacts */
+            -webkit-backface-visibility: hidden;
+            
+            /* Key changes for iOS safe area handling */
+            /* Extend background beyond safe area insets */
+            bottom: calc(-1 * env(safe-area-inset-bottom, 0px));
+            /* Compensate for the extension with negative margin */
+            margin-bottom: calc(-1 * env(safe-area-inset-bottom, 0px));
+            /* Ensure minimum height covers entire screen */
+            min-height: calc(100% + env(safe-area-inset-bottom, 0px));
         }
 
         /* Main page container with safe area insets */
@@ -43,7 +50,9 @@
             font-family: "Monaco", monospace;
             color: #ffffff;
             overflow-x: hidden;
-            background-color: #000; /* Fallback if image fails to load */
+            background-color: #000;
+            /* Prevent body scrolling to ensure fixed background works */
+            overflow: hidden;
         }
 
         /* Content overlay with padding for safe areas */
@@ -51,8 +60,9 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            padding-top: 80px; /* Space for fixed navigation */
-            padding-bottom: max(20px, env(safe-area-inset-bottom)); /* iOS bottom safe area */
+            padding-top: 80px;
+            /* Add safe area padding while keeping content visible */
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
             padding-left: max(20px, env(safe-area-inset-left));
             padding-right: max(20px, env(safe-area-inset-right));
         }
@@ -67,6 +77,8 @@
             justify-content: flex-end;
             gap: 15px;
             padding: 20px;
+            /* Add safe area padding to navigation */
+            padding-top: calc(20px + env(safe-area-inset-top, 0px));
             background-color: rgba(0, 0, 0, 0);
             backdrop-filter: blur(0px);
             z-index: 1000;
@@ -160,12 +172,12 @@
     </style>
 </head>
 <body>
-    <!-- Fixed background container -->
+    <!-- Fixed background container that now extends beyond safe areas -->
     <div class="bg-container"></div>
     
     <!-- Safe area wrapper for iOS -->
     <div class="safe-area">
-        <!-- Navigation bar -->
+        <!-- Navigation bar with safe area consideration -->
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="a1.html">Research</a>
