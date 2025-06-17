@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>S.T.A.R.T!!</title>
     <style>
         /* Social Footer Styles */
@@ -30,33 +30,38 @@
             padding: 0;
             font-family: "Monaco", monospace;
             color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* Background image container - prevents stretching */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
             background-image: url("bg8.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            min-height: 100vh;
-            overflow-y: auto;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
         
-        body.no-fixed-bg {
-            background-attachment: scroll;
-        }
-        
-        @media (min-width: 768px) {
-            body {
-                background-attachment: fixed;
-            }
-        }
-        
+        /* Content container */
         .overlay {
-            background-color: rgba(0, 0, 0, 0);
-            min-height: 100vh; /* JS dynamic */
+            position: relative;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             padding-top: 80px;
             padding-bottom: max(20px, env(safe-area-inset-bottom));
             padding-left: max(20px, env(safe-area-inset-left));
             padding-right: max(20px, env(safe-area-inset-right));
+            background-color: rgba(0, 0, 0, 0.3); /* Optional: tint overlay */
         }
         
         /* Dynamic Navigation Bar */
@@ -213,34 +218,24 @@
         </footer>
     </div>
 
-    <script>
-        // Calculate dynamic viewport height
-        function updateViewportHeight() {
+   <script>
+        // Lock viewport height on iOS
+        function lockViewport() {
             const vh = window.innerHeight * 0.01;
             document.documentElement.style.setProperty('--vh', `${vh}px`);
-            document.querySelector('.overlay').style.minHeight = `${window.innerHeight}px`;
+            document.body.style.minHeight = `${window.innerHeight}px`;
+            
+            // Prevent elastic scrolling on iOS
+            document.body.style.overscrollBehaviorY = 'none';
         }
-
-        // Initialize and listen for changes
-        updateViewportHeight();
-        window.addEventListener('resize', updateViewportHeight);
-        window.addEventListener('orientationchange', updateViewportHeight);
-
-        // Remove fixed background for iOS devices
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                     (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-        if (isIOS) {
-            document.body.classList.add('no-fixed-bg');
-        }
-
-        // Original navbar scroll logic
-        const nav = document.querySelector('.nav-links');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 10);
+        
+        // Initialize and handle resize
+        lockViewport();
+        window.addEventListener('resize', lockViewport);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(lockViewport, 100);
         });
-    </script>
-    
-    <script>
+       
         // Dynamic navigation effect
         const nav = document.querySelector('.nav-links');
         
