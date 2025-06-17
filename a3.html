@@ -2,10 +2,144 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Viewport settings optimized for iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>放课后茶会</title>
     <style>
-        /* Social Footer Styles */
+        /* Reset default margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fixed background container that covers entire viewport */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensures it stays behind content */
+            background-image: url("bg8.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll; /* Disables parallax on mobile */
+            -webkit-backface-visibility: hidden; /* Prevents rendering artifacts */
+        }
+
+        /* Main page container with safe area insets */
+        .safe-area {
+            position: relative;
+            min-height: 100vh;
+            min-height: -webkit-fill-available; /* iOS specific height fix */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Body styles */
+        body {
+            font-family: "Monaco", monospace;
+            color: #ffffff;
+            overflow-x: hidden;
+            background-color: #000; /* Fallback if image fails to load */
+        }
+
+        /* Content overlay with padding for safe areas */
+        .overlay {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px; /* Space for fixed navigation */
+            padding-bottom: max(20px, env(safe-area-inset-bottom)); /* iOS bottom safe area */
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
+        }
+
+        /* Fixed navigation bar */
+        .nav-links {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            z-index: 1000;
+            text-shadow: 2px 2px #000000;
+            transition: all 0.3s ease;
+        }
+
+        /* Scrolled state for navigation */
+        .nav-links.scrolled {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation link styles */
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.25rem;
+            transition: opacity 0.3s;
+        }
+
+        /* Main content container */
+        .content-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Desktop layout adjustment */
+        @media (min-width: 768px) {
+            .content-container {
+                width: 60%;
+            }
+        }
+
+        /* Text content styles */
+        .text-list {
+            text-align: left;
+            padding-left: 20px;
+            font-size: 1.4rem;
+        }
+
+        .text-list ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .text-list li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        /* Heading styles */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #000000;
+        }
+
+        /* Paragraph styles */
+        p {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #000000;
+        }
+
+        /* Footer styles */
         .social-footer {
             margin-top: auto;
             margin-bottom: 0.4rem;
@@ -23,124 +157,25 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-        
-        /* Main body styles */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "Monaco", monospace;
-            color: #ffffff;
-            background-image: url("bg8.jpg");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            overflow-y: auto;
-        }
-        
-        .overlay {
-            background-color: rgba(0, 0, 0, 0);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding-top: 80px; /* Space for fixed nav */
-            padding-bottom: max(20px, env(safe-area-inset-bottom));
-            padding-left: max(20px, env(safe-area-inset-left));
-            padding-right: max(20px, env(safe-area-inset-right));
-        }
-        
-        /* Dynamic Navigation Bar */
-        .nav-links {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0); /* Start transparent */
-            backdrop-filter: blur(0px); /* No blur initially */
-            z-index: 1000;
-            text-shadow: 2px 2px #000000;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-links.scrolled {
-            background-color: rgba(0, 0, 0, 0.5); /* Opaque when scrolled */
-            backdrop-filter: blur(5px); /* Add blur effect */
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.25rem;
-            transition: opacity 0.3s;
-        }
-        
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-        
-        .content-container {
-            width: 90%;
-            max-width: 800px;
-            margin: 0 auto;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-sizing: border-box;
-        }
-        
-        @media (min-width: 768px) {
-            .content-container {
-                width: 60%;
-            }
-        }
-        
-        .text-list {
-            text-align: left;
-            padding-left: 20px;
-            font-size: 1.4rem;
-        }
-        
-        .text-list ul {
-            padding-left: 20px;
-            margin: 0;
-        }
-        
-        .text-list li {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px #000000;
-        }
-        
-        p {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px #000000;
-        }
     </style>
 </head>
 <body>
-    <!-- Dynamic Navigation Bar -->
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="a1.html">Research</a>
-        <a href="a2.html">Events</a>
-        <a href="a3.html">Lounge</a>
-    </div>
+    <!-- Fixed background container -->
+    <div class="bg-container"></div>
+    
+    <!-- Safe area wrapper for iOS -->
+    <div class="safe-area">
+        <!-- Navigation bar -->
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="a1.html">Research</a>
+            <a href="a2.html">Event</a>
+            <a href="a3.html">Lounge</a>
+        </div>
 
-    <div class="overlay">
-        <div class="content-container">
+        <!-- Main content area -->
+        <div class="overlay">
+            <div class="content-container">
             <h1>Tea time: </h1>
              <div class="text-list">
                 <ul>
@@ -173,25 +208,64 @@
             </div>
         </div>
         <h1> </h1>
-        
-        <footer class="social-footer">
-            <div class="footer-content">
-                <div class="copyright"> © 2025 Hao Zhuang </div>
-            </div>
-        </footer>
+            
+            <!-- Footer -->
+            <footer class="social-footer">
+                <div class="footer-content">
+                    <div class="copyright"> © 2025 Hao Zhuang </div>
+                </div>
+            </footer>
+        </div>
     </div>
     
     <script>
-        // Dynamic navigation effect
-        const nav = document.querySelector('.nav-links');
-        
-        window.addEventListener('scroll', () => {
-            // Toggle nav background when scrolled
-            if (window.scrollY > 10) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
+        // Verify background image loads successfully
+        function verifyBackground() {
+            const bgDiv = document.querySelector('.bg-container');
+            const testImg = new Image();
+            
+            testImg.onload = function() {
+                bgDiv.style.backgroundImage = `url("${testImg.src}")`;
+            };
+            
+            testImg.onerror = function() {
+                console.error("Background image failed to load");
+                bgDiv.style.backgroundColor = "#222";
+            };
+            
+            testImg.src = "bg8.jpg";
+        }
+
+        // Adjust layout for iOS viewport quirks
+        function adjustLayout() {
+            const visualHeight = window.innerHeight;
+            const safeArea = document.querySelector('.safe-area');
+            
+            // Set CSS custom property and direct height
+            document.documentElement.style.setProperty('--vh', `${visualHeight}px`);
+            safeArea.style.minHeight = `${visualHeight}px`;
+            
+            // Prevent elastic scrolling on iOS
+            document.body.style.overscrollBehaviorY = 'none';
+        }
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', function() {
+            verifyBackground();
+            adjustLayout();
+            
+            // Navigation scroll effect
+            const nav = document.querySelector('.nav-links');
+            window.addEventListener('scroll', function() {
+                nav.classList.toggle('scrolled', window.scrollY > 10);
+            });
+        });
+
+        // Handle viewport changes
+        window.addEventListener('resize', adjustLayout);
+        window.addEventListener('orientationchange', function() {
+            // Delay adjustment to account for iOS rotation animation
+            setTimeout(adjustLayout, 300);
         });
     </script>
 </body>
