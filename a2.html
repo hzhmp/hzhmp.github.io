@@ -26,28 +26,37 @@
         
         /* Main body styles */
         body {
-            margin: 0;
-            padding: 0;
-            font-family: "Monaco", monospace;
-            color: #ffffff;
-            background-image: url("bg8.jpg");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            overflow-y: auto;
-        }
-        
-        .overlay {
-            background-color: rgba(0, 0, 0, 0);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding-top: 80px; /* Space for fixed nav */
-            padding-bottom: max(20px, env(safe-area-inset-bottom));
-            padding-left: max(20px, env(safe-area-inset-left));
-            padding-right: max(20px, env(safe-area-inset-right));
-        }
+           margin: 0;
+           padding: 0;
+           font-family: "Monaco", monospace;
+           color: #ffffff;
+           background-image: url("bg8.jpg");
+           background-size: cover;
+           background-position: center;
+           background-repeat: no-repeat;
+           min-height: 100vh;
+           min-height: -webkit-fill-available; /* To fix iOS */
+           overflow-y: auto;
+       }
+
+       /* Only iOS uses fixed background images */
+       @media (min-width: 768px) {
+           body {
+               background-attachment: fixed;
+           }
+       }
+
+       .overlay {
+           background-color: rgba(0, 0, 0, 0);
+           min-height: 100vh;
+           min-height: -webkit-fill-available; /* To fix iOS */
+           display: flex;
+           flex-direction: column;
+           padding-top: 80px;
+           padding-bottom: max(20px, env(safe-area-inset-bottom));
+           padding-left: max(20px, env(safe-area-inset-left));
+           padding-right: max(20px, env(safe-area-inset-right));
+       }
         
         /* Dynamic Navigation Bar */
         .nav-links {
