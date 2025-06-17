@@ -26,37 +26,38 @@
         
         /* Main body styles */
         body {
-           margin: 0;
-           padding: 0;
-           font-family: "Monaco", monospace;
-           color: #ffffff;
-           background-image: url("bg8.jpg");
-           background-size: cover;
-           background-position: center;
-           background-repeat: no-repeat;
-           min-height: 100vh;
-           min-height: -webkit-fill-available; /* To fix iOS */
-           overflow-y: auto;
-       }
-
-       /* Only iOS uses fixed background images */
-       @media (min-width: 768px) {
-           body {
-               background-attachment: fixed;
-           }
-       }
-
-       .overlay {
-           background-color: rgba(0, 0, 0, 0);
-           min-height: 100vh;
-           min-height: -webkit-fill-available; /* To fix iOS */
-           display: flex;
-           flex-direction: column;
-           padding-top: 80px;
-           padding-bottom: max(20px, env(safe-area-inset-bottom));
-           padding-left: max(20px, env(safe-area-inset-left));
-           padding-right: max(20px, env(safe-area-inset-right));
-       }
+            margin: 0;
+            padding: 0;
+            font-family: "Monaco", monospace;
+            color: #ffffff;
+            background-image: url("bg8.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+        
+        body.no-fixed-bg {
+            background-attachment: scroll;
+        }
+        
+        @media (min-width: 768px) {
+            body {
+                background-attachment: fixed;
+            }
+        }
+        
+        .overlay {
+            background-color: rgba(0, 0, 0, 0);
+            min-height: 100vh; /* JS dynamic */
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
+        }
         
         /* Dynamic Navigation Bar */
         .nav-links {
@@ -211,6 +212,33 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // Calculate dynamic viewport height
+        function updateViewportHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+            document.querySelector('.overlay').style.minHeight = `${window.innerHeight}px`;
+        }
+
+        // Initialize and listen for changes
+        updateViewportHeight();
+        window.addEventListener('resize', updateViewportHeight);
+        window.addEventListener('orientationchange', updateViewportHeight);
+
+        // Remove fixed background for iOS devices
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                     (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        if (isIOS) {
+            document.body.classList.add('no-fixed-bg');
+        }
+
+        // Original navbar scroll logic
+        const nav = document.querySelector('.nav-links');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 10);
+        });
+    </script>
     
     <script>
         // Dynamic navigation effect
