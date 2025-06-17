@@ -289,3 +289,317 @@
     </script>
 </body>
 </html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Critical iOS viewport settings -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>S.T.A.R.T!!</title>
+    <style>
+        /* ===== BASE RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== FULLSCREEN BACKGROUND SOLUTION ===== */
+        .fullscreen-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* Fallback */
+            height: calc(100% + constant(safe-area-inset-bottom)); /* iOS 11 */
+            height: calc(100% + env(safe-area-inset-bottom)); /* iOS 11.2+ */
+            z-index: -1;
+            background-image: url("bg8.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            -webkit-backface-visibility: hidden; /* Prevent rendering artifacts */
+        }
+
+        /* ===== CORE LAYOUT STRUCTURE ===== */
+        body {
+            font-family: "Monaco", monospace;
+            color: #ffffff;
+            overflow-x: hidden;
+            background-color: #000; /* Fallback if image fails */
+        }
+
+        .content-wrapper {
+            position: relative;
+            min-height: 100vh;
+            min-height: -webkit-fill-available; /* Alternative iOS height */
+            display: flex;
+            flex-direction: column;
+            padding-bottom: env(safe-area-inset-bottom); /* Space for bottom bar */
+        }
+
+        /* ===== NAVIGATION BAR ===== */
+        .nav-links {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            z-index: 1000;
+            text-shadow: 2px 2px #000000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links.scrolled {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.25rem;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* ===== MAIN CONTENT AREA ===== */
+        .overlay {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px; /* Space for navigation */
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
+        }
+
+        .content-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .content-container {
+                width: 60%;
+            }
+        }
+
+        /* ===== TYPOGRAPHY STYLES ===== */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #000000;
+        }
+
+        p {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #000000;
+        }
+
+        .text-list {
+            text-align: left;
+            padding-left: 20px;
+            font-size: 1.4rem;
+        }
+
+        .text-list ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .text-list li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        /* ===== FOOTER STYLES ===== */
+        .social-footer {
+            margin-top: auto;
+            margin-bottom: 0.4rem;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: flex;
+            color: #cccccc;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== LINK STYLES ===== */
+        a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background extends behind iOS toolbar -->
+    <div class="fullscreen-bg"></div>
+    
+    <!-- Main content wrapper -->
+    <div class="content-wrapper">
+        <!-- Navigation -->
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="a1.html">Research</a>
+            <a href="a2.html">Events</a>
+            <a href="a3.html">Lounge</a>
+        </div>
+
+        <!-- Content area -->
+        <div class="overlay">
+            <div class="content-container">
+                 <h1>Department routine seminars: </h1>
+                    <p>If you would like to attend or give a talk, please feel free to contact our hosts.</p>
+             <div class="text-list">
+                <ul>
+                    <li><p> Reading/Working Seminar on Noncommutative Geometry (Hosts: <a href = "https://www.math.wustl.edu/~ylsong/index.php" style="color:#ffffff;">Yanli Song</a>, <a href = "https://www.math.wustl.edu/~xtang/" style="color:#ffffff;">Xiang Tang</a>). </p></li>
+                    <li><p> Geometry and Topology Seminar (Hosts: <a href = "https://sites.google.com/view/parker-evans/home" style="color:#ffffff;">Parker Evans</a>, <a href = "https://math.wustl.edu/people/angel-roman" style="color:#ffffff;">Angel Roman</a>). </p></li>
+                </ul>
+             </div>
+        </div>
+
+        <div class="content-container">
+          <h1>Contributed and invited talks: </h1>
+            <div class="text-list">
+                <ul>
+                    <li><p> <a href = "https://sites.google.com/view/gonefishing2025/home" style="color:#ffffff;">Gone Fishing 2025 at WUSTL</a>: Symplectic semi-characteristics (Spring 2025). </p></li>
+                    <li><p> <a href = "https://math.colorado.edu/ncgboulder2025/" style="color:#ffffff;">NCG Festival at CU Boulder</a>: Kervaire semi-characteristics in KK-theory (Spring 2025). </p></li>
+                    <li><p> <a href = "https://math.wustl.edu/events/szego-seminar-introduction-gromov-witten-invariants?d=2025-02-20" style="color:#ffffff;">Szegő Seminar at WUSTL</a>: An introduction to Gromov-Witten invariants (Spring 2025). </p></li>
+                    <li><p> <a href = "https://docs.google.com/spreadsheets/d/1Ta0qmpdVOpXyc5K7_kjp5GeklHqeQTuGXPDjgVQsSoU/edit?usp=sharing" style="color:#ffffff;">Geometry and Topology Seminar at WUSTL</a>: Invariant Thom-Smale-Witten theory (Spring 2025). </p></li>
+                    <li><p> <a href = "https://jointmathematicsmeetings.org/jmm" style="color:#ffffff;">JMM 2025 in Seattle</a>: Generalized mod 2 index in KK-theory and an Atiyah type vanishing theorem (Winter 2025). </p></li>
+                    <li><p> <a href = "https://sites.google.com/view/uiuc-wustl-spgseminar/fall-2024" style="color:#ffffff;">UIUC-WUSTL Joint Symplectic Geometry Seminar at UIUC</a>: Analytic Morse theory under Lie group actions (Fall 2024). </p></li>
+                    <li><p> <a href = "https://math.wustl.edu/events/geometry-and-topology-seminar-proper-cocompact-kervaire-semi-characteristics-kk-theory?d=2024-09-13" style="color:#ffffff;">Geometry and Topology Seminar at WUSTL</a>: Proper cocompact Kervaire semi-characteristics in KK-theory (Fall 2024). </p></li>
+                    <li><p> <a href = "https://sites.northwestern.edu/gonefishing24/program/" style="color:#ffffff;">Gone Fishing 2024 at Northwestern University</a>: Invariant Morse-Bott-Smale cohomology and the Witten deformation (Spring 2024). </p></li>
+                    <li><p> <a href = "https://math.mst.edu/department/" style="color:#ffffff;">Graduate Seminar at Missouri S&T</a>: Witten's insight: An analytic approach to Morse theory (Spring 2024). </p></li>
+                    <li><p> <a href = "https://erkaobao.github.io/math/activities/gt2024spring" style="color:#ffffff;">Differential Geometry and Symplectic Topology Seminar at UMN Twin Cities</a>: Invariant Morse-Bott-Smale chain complexes, the Witten deformation and the estimates of eigenvalues (Spring 2024). </p></li>
+                    <li><p> <a href = "https://www.math.tamu.edu/seminars/noncomgeom/index.php" style="color:#ffffff;">Noncommutative Geometry Seminar at Texas A&M University</a>: Invariant Morse-Bott-Smale chain complexes, the Witten deformation and Lie groupoid methods (Spring 2024). </p></li>
+                    <li><p> <a href = "https://sites.google.com/view/rtncg-wustl/home" style="color:#ffffff;">Workshop on Noncommutative Geometry and Representation Theory at WUSTL</a>: Invariant Morse-Bott-Smale cohomology and the Witten deformation (Fall 2023).</p></li>
+                    <li><p> <a href = "https://docs.google.com/spreadsheets/d/1jm-JUnNJAVKX7xLG-K2jjcHfGKnIH79Z-T_PVwzhlKE/edit?usp=sharing" style="color:#ffffff;">Geometry and Topology Seminar at WUSTL</a>: Invariant Morse-Bott-Smale chain complex under the circle action (Spring 2023).</p></li>
+                    <li><p> <a href = "https://docs.google.com/spreadsheets/d/1Pq3tI1MsZhEeU5rT5N4ehX1BGuNil1sg7_Y3BDFiaEE/edit?gid=0#gid=0" style="color:#ffffff;">Szegő Seminar at WUSTL</a>: Introduction to Morse theory (Spring 2022). </p></li>
+                    <li><p> <a href = "https://math.wustl.edu/events/geometry-and-topology-seminar-witten-deformation-and-poincare%CC%81-hopf-index-theorem?d=2020-12-11" style="color:#ffffff;">Geometry and Topology Seminar at WUSTL</a>: An analytic proof of the Poincaré-Hopf index theorem (Fall 2021). </p></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Conferences attended: </h1>
+            <div class="text-list">
+                <ul>
+                    <li><p> <a href = "https://scgas.math.uci.edu/" style="color:#ffffff;">The 30th Southern California Geometric Analysis Seminar at UC Irvine</a> (Spring 2025). </p></li>
+                    <li><p> <a href = "https://math.wustl.edu/events/multivariable-operator-theory-conference-2024" style="color:#ffffff;">Multivariable Operator Theory Conference at WUSTL</a> (Summer 2024).</p></li>
+                    <li><p> <a href = "https://sites.google.com/view/uiuc-wustl-spgseminar/spring-2024" style="color:#ffffff;">UIUC-WUSTL Joint Symplectic Geometry Seminar at UIUC</a> (Spring 2024).</p></li>
+                    <li><p> <a href = "https://sites.google.com/view/uiuc-wustl-spgseminar/fall-2023" style="color:#ffffff;">UIUC-WUSTL Joint Symplectic Geometry Seminar at WUSTL</a> (Fall 2023).</p></li>
+                    <li><p> <a href = "https://www.math.wustl.edu/~ylsong/NCG2023.php" style="color:#ffffff;">NCG Festival at WUSTL</a> (Summer 2023).</p></li>
+                    <li><p> <a href = "https://sites.google.com/view/uiuc-wustl-spgseminar/spring-2023" style="color:#ffffff;">UIUC-WUSTL Joint Symplectic Geometry Seminar at UIUC</a> (Spring 2023).</p></li>
+                    <li><p> <a href = "https://scgas-2023.kiyo5hi.com/" style="color:#ffffff;">The 28th Southern California Geometric Analysis Seminar at UC Irvine</a> (Spring 2023).</p></li>
+                    <li><p> <a href = "https://sites.google.com/site/ncgwustl/" style="color:#ffffff;">Workshop on Hypoelliptic Operators at WUSTL</a> (Fall 2022).</p></li>
+                    <li><p> <a href = "https://www.math.wustl.edu/~ylsong/GPOTS.php" style="color:#ffffff;">Great Plains Operator Theory Symposium Conference at WUSTL</a> (Summer 2022).</p></li>
+                    <li><p> <a href = "https://www.math.wustl.edu/~ylsong/GPOTS.php" style="color:#ffffff;">Great Plains Operator Theory Symposium Conference</a> (online Summer 2021).</p></li>
+                    <li><p> <a href = "https://www.math.wustl.edu/~xtang/NCG-Seminar" style="color:#ffffff;">Global Noncommutative Geometry Seminar</a> (online from 2020 to 2023).</p></li>
+                    <li><p> <a href = "https://scms.fudan.edu.cn/info/1248/2842.htm" style="color:#ffffff;">K-theory and Noncommutative Geometry at SCMS</a> (Summer 2019).</p></li>
+                </ul>
+            </div>
+        </div>
+        <h1> </h1>
+            
+            <!-- Footer -->
+            <footer class="social-footer">
+                <div class="footer-content">
+                    <div class="copyright"> © 2025 Hao Zhuang </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // ===== BACKGROUND IMAGE HANDLER =====
+        function initBackground() {
+            const bg = document.querySelector('.fullscreen-bg');
+            const img = new Image();
+            
+            img.onload = function() {
+                bg.style.backgroundImage = `url("${img.src}")`;
+            };
+            
+            img.onerror = function() {
+                console.warn("Background image failed to load");
+                bg.style.backgroundColor = "#222";
+                bg.style.backgroundImage = "none";
+            };
+            
+            img.src = "bg8.jpg";
+        }
+
+        // ===== VIEWPORT HEIGHT MANAGER =====
+        function manageViewport() {
+            const vh = window.innerHeight;
+            const doc = document.documentElement;
+            const contentWrapper = document.querySelector('.content-wrapper');
+            const bg = document.querySelector('.fullscreen-bg');
+            
+            // Set CSS variable
+            doc.style.setProperty('--vh', `${vh}px`);
+            
+            // Ensure proper heights
+            contentWrapper.style.minHeight = `${vh}px`;
+            
+            // Extend background behind toolbar
+            const safeInset = parseInt(getComputedStyle(doc)
+                .getPropertyValue('--safe-area-inset-bottom')) || 0;
+            bg.style.height = `calc(100% + ${safeInset}px)`;
+            
+            // Disable elastic scrolling on iOS
+            document.body.style.overscrollBehaviorY = 'none';
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            initBackground();
+            manageViewport();
+            
+            // Navigation scroll effect
+            const nav = document.querySelector('.nav-links');
+            window.addEventListener('scroll', function() {
+                nav.classList.toggle('scrolled', window.scrollY > 10);
+            });
+        });
+
+        // ===== VIEWPORT CHANGE HANDLERS =====
+        window.addEventListener('resize', manageViewport);
+        window.addEventListener('orientationchange', function() {
+            // Delay to account for iOS rotation animation
+            setTimeout(manageViewport, 300);
+        });
+    </script>
+</body>
+</html>
