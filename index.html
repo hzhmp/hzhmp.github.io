@@ -5,6 +5,12 @@
     <!-- Viewport settings optimized for iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>H^0(M,E)</title>
+    <script>
+        /* remove index.html extension */
+        if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+            window.history.replaceState(null, null, null);
+        }
+    </script>
     <style>
         /* Reset default margins and padding */
         * {
