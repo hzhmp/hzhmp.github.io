@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport settings optimized for iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>S.T.A.R.T!!</title>
+    <link rel="icon" type="image/gif" href="doglogo.jpg">
+    <style>
+        /* Reset default margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fixed background container that covers entire viewport */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensures it stays behind content */
+            background-image: url("bg4.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll; /* Disables parallax on mobile */
+            -webkit-backface-visibility: hidden; /* Prevents rendering artifacts */
+        }
+
+        /* Main page container with safe area insets */
+        .safe-area {
+            position: relative;
+            min-height: 100vh;
+            min-height: -webkit-fill-available; /* iOS specific height fix */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Body styles */
+        body {
+            font-family: "Monaco", monospace;
+            color: #ffffff;
+            overflow-x: hidden;
+            background-color: #000; /* Fallback if image fails to load */
+        }
+
+        /* Content overlay with padding for safe areas */
+        .overlay {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px; /* Space for fixed navigation */
+            padding-bottom: max(20px, env(safe-area-inset-bottom)); /* iOS bottom safe area */
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
+        }
+
+        /* Fixed navigation bar */
+        .nav-links {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            z-index: 1000;
+            text-shadow: 2px 2px #000000;
+            transition: all 0.3s ease;
+        }
+
+        /* Scrolled state for navigation */
+        .nav-links.scrolled {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation link styles */
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.25rem;
+            transition: opacity 0.3s;
+        }
+
+        /* Main content container */
+        .content-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Desktop layout adjustment */
+        @media (min-width: 768px) {
+            .content-container {
+                width: 60%;
+            }
+        }
+
+        /* Text content styles */
+        .text-list {
+            text-align: left;
+            padding-left: 20px;
+            font-size: 1.4rem;
+        }
+
+        .text-list ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .text-list li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        /* Heading styles */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #000000;
+        }
+
+        /* Paragraph styles */
+        p {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #000000;
+        }
+
+        /* Footer styles */
+        .social-footer {
+            margin-top: auto;
+            margin-bottom: 0.4rem;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: flex;
+            color: #cccccc;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a.nounderline {
+            text-decoration: none; 
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed background container -->
+    <div class="bg-container"></div>
+    
+    <!-- Safe area wrapper for iOS -->
+    <div class="safe-area">
+        <!-- Navigation bar -->
+        <div class="nav-links">
+            <a href="index_cn.html">首页</a>
+            <a href="research_cn.html">科研</a>
+            <a href="teaching_cn.html">教学</a>
+            <a href="events_cn.html">活动</a>
+        </div>
+
+        <!-- Main content area -->
+        <div class="overlay">
+        <div class="content-container">
+            <h1>校内讨论班: </h1>
+            <div class="text-list">
+                <ul>
+                    <li><p> <a href = "https://bicmr.pku.edu.cn/content/lists/49.html" style="color:#ffffff;">辛几何与数学物理</a>.</p></li>
+                    <li><p> <a href = "https://bicmr.pku.edu.cn/content/lists/47.html" style="color:#ffffff;">博士后讨论班</a>.</p></li>
+            </div>
+          <h1>学术报告: </h1>
+            <div class="text-list">
+                <ul>
+                    <li><p> 南方科技大学几何与数学物理研讨会: 主题待定 (2025秋季). </p></li>
+                    <li><p> <a href = "http://math.ruc.edu.cn/xsdt/83bbf9db2679438e88d8845d0f49574e.htm" style="color:#ffffff;">人民大学前沿论坛学术报告</a>: 辛流形半示性数和它的计算公式 (2025秋季). </p></li>
+                    <li><p> <a href = "https://bicmr.pku.edu.cn/content/show/47-3765.html" style="color:#ffffff;">北大数学中心博士后讨论班</a>: A counting formula of the symplectic semi-characteristic (2025秋季). </p></li>
+                    <li><p> <a href = "https://sites.google.com/view/gonefishing2025/home" style="color:#ffffff;">圣路易斯华盛顿大学Gone Fishing 2025</a>: Symplectic semi-characteristics (2025春季). </p></li>
+                    <li><p> <a href = "https://math.colorado.edu/ncgboulder2025/" style="color:#ffffff;">科罗拉多大学Boulder分校非交换几何节</a>: Kervaire semi-characteristics in KK-theory (2025春季). </p></li>
+                    <li><p> <a href = "https://math.wustl.edu/events/szego-seminar-introduction-gromov-witten-invariants?d=2025-02-20" style="color:#ffffff;">圣路易斯华盛顿大学Szegő讨论班</a>: An introduction to Gromov-Witten invariants (2025春季). </p></li>
+                    <li><p> <a href = "https://docs.google.com/spreadsheets/d/1Ta0qmpdVOpXyc5K7_kjp5GeklHqeQTuGXPDjgVQsSoU/edit?usp=sharing" style="color:#ffffff;">圣路易斯华盛顿大学几何与拓扑讨论班</a>: Invariant Thom-Smale-Witten theory (2025春季). </p></li>
+                    <li><p> <a href = "https://jointmathematicsmeetings.org/jmm" style="color:#ffffff;">2025美国数学协会联合会议 (西雅图举办)</a>: Generalized mod 2 index in KK-theory and an Atiyah type vanishing theorem (2025冬季). </p></li>
+                    <li><p> <a href = "https://sites.google.com/view/uiuc-wustl-spgseminar/fall-2024" style="color:#ffffff;">伊利诺大学伊厄巴纳-香槟分校与圣路易斯华盛顿大学辛几何联合会议 (厄巴纳-香槟举办)</a>: Analytic Morse theory under Lie group actions (2024秋季). </p></li>
+                    <li><p> <a href = "https://math.wustl.edu/events/geometry-and-topology-seminar-proper-cocompact-kervaire-semi-characteristics-kk-theory?d=2024-09-13" style="color:#ffffff;">圣路易斯华盛顿大学几何与拓扑讨论班</a>: Proper cocompact Kervaire semi-characteristics in KK-theory (2024秋季). </p></li>
+                    <li><p> <a href = "https://sites.northwestern.edu/gonefishing24/program/" style="color:#ffffff;">美国西北大学Gone Fishing 2024</a>: Invariant Morse-Bott-Smale cohomology and the Witten deformation (2024春季). </p></li>
+                    <li><p> <a href = "https://math.mst.edu/department/" style="color:#ffffff;">密苏里科技大学研究生讨论班</a>: Witten's insight: An analytic approach to Morse theory (2024春季). </p></li>
+                    <li><p> <a href = "https://erkaobao.github.io/math/activities/gt2024spring" style="color:#ffffff;">明尼苏达双城分校微分几何与辛拓扑讨论班</a>: Invariant Morse-Bott-Smale chain complexes, the Witten deformation and the estimates of eigenvalues (2024春季). </p></li>
+                    <li><p> <a href = "https://www.math.tamu.edu/seminars/noncomgeom/index.php" style="color:#ffffff;">得克萨斯农工大学非交换几何讨论班</a>: Invariant Morse-Bott-Smale chain complexes, the Witten deformation and Lie groupoid methods (2024春季). </p></li>
+                    <li><p> <a href = "https://sites.google.com/view/rtncg-wustl/home" style="color:#ffffff;">圣路易斯华盛顿大学非交换几何与表示论研讨会</a>: Invariant Morse-Bott-Smale cohomology and the Witten deformation (2023秋季).</p></li>
+                    <li><p> <a href = "https://docs.google.com/spreadsheets/d/1jm-JUnNJAVKX7xLG-K2jjcHfGKnIH79Z-T_PVwzhlKE/edit?usp=sharing" style="color:#ffffff;">圣路易斯华盛顿大学几何与拓扑讨论班</a>: Invariant Morse-Bott-Smale chain complex under the circle action (2023春季).</p></li>
+                    <li><p> <a href = "https://docs.google.com/spreadsheets/d/1Pq3tI1MsZhEeU5rT5N4ehX1BGuNil1sg7_Y3BDFiaEE/edit?gid=0#gid=0" style="color:#ffffff;">圣路易斯华盛顿大学Szegő讨论班</a>: Introduction to Morse theory (2022春季). </p></li>
+                    <li><p> <a href = "https://math.wustl.edu/events/geometry-and-topology-seminar-witten-deformation-and-poincare%CC%81-hopf-index-theorem?d=2020-12-11" style="color:#ffffff;">圣路易斯华盛顿大学几何与拓扑讨论班</a>: An analytic proof of the Poincaré-Hopf index theorem (2021秋季). </p></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>参加会议: </h1>
+            <div class="text-list">
+                <ul>
+                    <li><p> <a href = "https://scgas.math.uci.edu/" style="color:#ffffff;">第30届加州南部几何分析讨论班 (加州大学尔湾分校举办)</a> (2025春季). </p></li>
+                    <li><p> <a href = "https://math.wustl.edu/events/multivariable-operator-theory-conference-2024" style="color:#ffffff;">圣路易斯华盛顿大学多变量算子理论会议</a> (2024夏季).</p></li>
+                    <li><p> <a href = "https://sites.google.com/view/uiuc-wustl-spgseminar/spring-2024" style="color:#ffffff;">伊利诺大学伊厄巴纳-香槟分校与圣路易斯华盛顿大学辛几何联合会议 (厄巴纳-香槟举办)</a> (2024春季).</p></li>
+                    <li><p> <a href = "https://sites.google.com/view/uiuc-wustl-spgseminar/fall-2023" style="color:#ffffff;">伊利诺大学伊厄巴纳-香槟分校与圣路易斯华盛顿大学辛几何联合会议 (圣路易斯华盛顿大学举办)</a> (2023秋季).</p></li>
+                    <li><p> <a href = "https://www.math.wustl.edu/~ylsong/NCG2023.php" style="color:#ffffff;">圣路易斯华盛顿大学非交换几何节</a> (2023夏季).</p></li>
+                    <li><p> <a href = "https://sites.google.com/view/uiuc-wustl-spgseminar/spring-2023" style="color:#ffffff;">伊利诺大学伊厄巴纳-香槟分校与圣路易斯华盛顿大学辛几何联合会议 (厄巴纳-香槟举办)</a> (2023春季).</p></li>
+                    <li><p> <a href = "https://scgas-2023.kiyo5hi.com/" style="color:#ffffff;">第28届加州南部几何分析讨论班 (加州大学尔湾分校举办)</a> (2023春季).</p></li>
+                    <li><p> <a href = "https://sites.google.com/site/ncgwustl/" style="color:#ffffff;">圣路易斯华盛顿大学亚椭圆算子研讨会</a> (2022秋季).</p></li>
+                    <li><p> <a href = "https://www.math.wustl.edu/~ylsong/GPOTS.php" style="color:#ffffff;">大平原算子理论座谈会 (圣路易斯华盛顿大学举办)</a> (2022夏季).</p></li>
+                    <li><p> <a href = "https://www.math.wustl.edu/~ylsong/GPOTS.php" style="color:#ffffff;">大平原算子理论座谈会</a> (线上, 2021夏季).</p></li>
+                    <li><p> <a href = "https://www.math.wustl.edu/~xtang/NCG-Seminar" style="color:#ffffff;">全球非交换几何讨论班</a> (线上, 2020-2023).</p></li>
+                    <li><p> <a href = "https://scms.fudan.edu.cn/info/1248/2842.htm" style="color:#ffffff;">K理论与非交换几何会议 (上海数学中心举办)</a> (2019夏季).</p></li>
+                </ul>
+            </div>
+        </div>
+        <h1> </h1>
+            
+            <!-- Footer -->
+            <footer class="social-footer">
+                <div class="footer-content">
+                    <div class="copyright"> © 2025 Hao Zhuang </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    
+    <script>
+        // Verify background image loads successfully
+        function verifyBackground() {
+            const bgDiv = document.querySelector('.bg-container');
+            const testImg = new Image();
+            
+            testImg.onload = function() {
+                bgDiv.style.backgroundImage = `url("${testImg.src}")`;
+            };
+            
+            testImg.onerror = function() {
+                console.error("Background image failed to load");
+                bgDiv.style.backgroundColor = "#222";
+            };
+            
+            testImg.src = "bg4.jpg";
+        }
+
+        // Adjust layout for iOS viewport quirks
+        function adjustLayout() {
+            const visualHeight = window.innerHeight;
+            const safeArea = document.querySelector('.safe-area');
+            
+            // Set CSS custom property and direct height
+            document.documentElement.style.setProperty('--vh', `${visualHeight}px`);
+            safeArea.style.minHeight = `${visualHeight}px`;
+            
+            // Prevent elastic scrolling on iOS
+            document.body.style.overscrollBehaviorY = 'none';
+        }
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', function() {
+            verifyBackground();
+            adjustLayout();
+            
+            // Navigation scroll effect
+            const nav = document.querySelector('.nav-links');
+            window.addEventListener('scroll', function() {
+                nav.classList.toggle('scrolled', window.scrollY > 10);
+            });
+        });
+
+        // Handle viewport changes
+        window.addEventListener('resize', adjustLayout);
+        window.addEventListener('orientationchange', function() {
+            // Delay adjustment to account for iOS rotation animation
+            setTimeout(adjustLayout, 300);
+        });
+    </script>
+</body>
+</html>
