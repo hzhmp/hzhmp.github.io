@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport settings optimized for iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>放课后茶会</title>
+    <link rel="icon" type="image/gif" href="doglogo.jpg">
+    <style>
+        /* Reset default margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fixed background container that covers entire viewport */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensures it stays behind content */
+            background-image: url("bg4.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll; /* Disables parallax on mobile */
+            -webkit-backface-visibility: hidden; /* Prevents rendering artifacts */
+        }
+
+        /* Main page container with safe area insets */
+        .safe-area {
+            position: relative;
+            min-height: 100vh;
+            min-height: -webkit-fill-available; /* iOS specific height fix */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Body styles */
+        body {
+            font-family: "Monaco", monospace;
+            color: #ffffff;
+            overflow-x: hidden;
+            background-color: #000; /* Fallback if image fails to load */
+        }
+
+        /* Content overlay with padding for safe areas */
+        .overlay {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px; /* Space for fixed navigation */
+            padding-bottom: max(20px, env(safe-area-inset-bottom)); /* iOS bottom safe area */
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
+        }
+
+        /* Fixed navigation bar */
+        .nav-links {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            z-index: 1000;
+            text-shadow: 2px 2px #000000;
+            transition: all 0.3s ease;
+        }
+
+        /* Scrolled state for navigation */
+        .nav-links.scrolled {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation link styles */
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.25rem;
+            transition: opacity 0.3s;
+        }
+
+        /* Main content container */
+        .content-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Desktop layout adjustment */
+        @media (min-width: 768px) {
+            .content-container {
+                width: 60%;
+            }
+        }
+
+        /* Text content styles */
+        .text-list {
+            text-align: left;
+            padding-left: 20px;
+            font-size: 1.4rem;
+        }
+
+        .text-list ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .text-list li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        /* Heading styles */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #000000;
+        }
+
+        /* Paragraph styles */
+        p {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #000000;
+        }
+
+        /* Footer styles */
+        .social-footer {
+            margin-top: auto;
+            margin-bottom: 0.4rem;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: flex;
+            color: #cccccc;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed background container -->
+    <div class="bg-container"></div>
+    
+    <!-- Safe area wrapper for iOS -->
+    <div class="safe-area">
+        <!-- Navigation bar -->
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="research.html">Research</a>
+            <a href="teaching.html">Teaching</a>
+            <a href="events.html">Events</a>
+        </div>
+
+       <!-- Main content area -->
+        <div class="overlay">
+
+        <div class="content-container">
+          <h1>Instructors: </h1>
+            <div class="text-list">
+                <ul> 
+                    <li><p> Fall 2024: Math Circle at WUSTL for high school students. <a href = "mathcircle.pdf" style="color:#ffffff;">Lecture notes</a> </p></li>
+                    <li><p> Summer 2022: Math 309 Matrix Algebra.  <a href = "matrix2022summer.pdf" style="color:#ffffff;">Lecture notes</a> </p></li>
+                </ul>     
+            </div>
+            
+            <h1>Assistants: </h1>
+            <div class="text-list">
+                <ul>
+                    <li><p> Spring 2025: Math 131 Calculus I (Instructor: <a href = "https://math.wustl.edu/people/silas-johnson" style="color:#ffffff;">Silas Johnson</a>). </p></li>
+                    <li><p> Fall 2024: Math 233 Calculus III (Instructors: <a href = "http://dehn.wustl.edu/~blake/" style="color:#ffffff;">Blake Thornton</a>, <a href = "https://www.math.wustl.edu/~roberts/" style="color:#ffffff;">Rachel Roberts</a>, <a href = "https://www.math.wustl.edu/~chi/" style="color:#ffffff;">Quo-Shin Chi</a>).</p></li>
+                    <li><p> Fall 2022: Math 233 Calculus III (Instructors: <a href = "http://dehn.wustl.edu/~blake/" style="color:#ffffff;">Blake Thornton</a>, <a href = "https://www.math.wustl.edu/~jayy/" style="color:#ffffff;">Jay Yang</a>).</p></li>
+                    <li><p> Spring 2022: Math 217 Differential Equations (Instructor: <a href = "https://arxiv.org/search/math?searchtype=author&query=Diaz,+H+A" style="color:#ffffff;">Humberto Diaz</a>).</p></li>
+                    <li><p> Fall 2021: Math 233 Calculus III (Instructors: <a href = "http://dehn.wustl.edu/~blake/" style="color:#ffffff;">Blake Thornton</a>, <a href = "https://sites.google.com/view/rudy-rodsphon/" style="color:#ffffff;">Rudy Rodsphon</a>, <a href = "https://research.umkc.edu/scao" style="color:#ffffff;">Shuhao Cao</a>).</p></li>
+                    <li><p> Spring 2021: Math 217 Differential Equations (Instructors: <a href = "https://sites.google.com/view/benw/" style="color:#ffffff;">Ben Wormleighton</a>, <a href = "https://research.umkc.edu/scao" style="color:#ffffff;">Shuhao Cao</a>).</p></li>
+                    <li><p> Fall 2020: Math 233 Calculus III (Instructors: <a href = "http://dehn.wustl.edu/~blake/" style="color:#ffffff;">Blake Thornton</a>, <a href = "https://sites.google.com/view/benw/" style="color:#ffffff;">Ben Wormleighton</a>, <a href = "https://www.math.wustl.edu/~ylsong/" style="color:#ffffff;">Yanli Song</a>).</p></li>
+                </ul>
+            </div>
+        
+            
+            <!-- Footer -->
+            <footer class="social-footer">
+                <div class="footer-content">
+                    <div class="copyright"> © 2025 Hao Zhuang </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    
+    <script>
+        // Verify background image loads successfully
+        function verifyBackground() {
+            const bgDiv = document.querySelector('.bg-container');
+            const testImg = new Image();
+            
+            testImg.onload = function() {
+                bgDiv.style.backgroundImage = `url("${testImg.src}")`;
+            };
+            
+            testImg.onerror = function() {
+                console.error("Background image failed to load");
+                bgDiv.style.backgroundColor = "#222";
+            };
+            
+            testImg.src = "bg4.jpg";
+        }
+
+        // Adjust layout for iOS viewport quirks
+        function adjustLayout() {
+            const visualHeight = window.innerHeight;
+            const safeArea = document.querySelector('.safe-area');
+            
+            // Set CSS custom property and direct height
+            document.documentElement.style.setProperty('--vh', `${visualHeight}px`);
+            safeArea.style.minHeight = `${visualHeight}px`;
+            
+            // Prevent elastic scrolling on iOS
+            document.body.style.overscrollBehaviorY = 'none';
+        }
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', function() {
+            verifyBackground();
+            adjustLayout();
+            
+            // Navigation scroll effect
+            const nav = document.querySelector('.nav-links');
+            window.addEventListener('scroll', function() {
+                nav.classList.toggle('scrolled', window.scrollY > 10);
+            });
+        });
+
+        // Handle viewport changes
+        window.addEventListener('resize', adjustLayout);
+        window.addEventListener('orientationchange', function() {
+            // Delay adjustment to account for iOS rotation animation
+            setTimeout(adjustLayout, 300);
+        });
+    </script>
+</body>
+</html>
